@@ -12,7 +12,71 @@
             padding: 0;
             background-color: #696969; /* Set gray background color */
         }
-
+        .sushi-card-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 40px; /* Space between cards */
+            padding: 20px;
+        }
+        .sushi-card {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            width: 250px;
+            height: 330px;
+            margin: 1px;
+            overflow: hidden;
+            text-align: center;
+        }
+        .sushi-card:nth-of-type(5),
+        .sushi-card:nth-of-type(3),
+        .sushi-card:nth-of-type(6){
+            height: 345px;
+        }
+        .sushi-card:nth-of-type(1),
+        .sushi-card:nth-of-type(2),
+        .sushi-card:nth-of-type(4){
+            height: 365px;
+        }
+        .sushi-card img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+        }
+        .sushi-card .title {
+            font-size: 1.2em;
+            margin: 10px 0;
+            color: #7CFC00; /* Title color */
+        }
+        .sushi-card .description {
+            font-size: 0.9em;
+            margin: 5px 20px;
+            color: #00FFFF; /* Description color */
+        }
+        .sushi-card .price-weight {
+            font-size: 0.9em;
+            margin: 5px 20px;
+        }
+        .sushi-card .price {
+            color: #EE82EE; /* Price color */
+        }
+        .sushi-card .weight {
+            color: #000000; /* Weight color */
+        }
+        .sushi-card .add-to-cart {
+            display: block;
+            background-color: #ff6347;
+            color: white;
+            text-decoration: none;
+            padding: 10px;
+            margin: 10px;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+        .sushi-card .add-to-cart:hover {
+            background-color: #ff4500;
+        }
 
 
 
@@ -308,131 +372,43 @@
             text-decoration: underline;
             color: #FFFF00; /* Можно добавить любой цвет, который вам нравится */
         }
-        .sushi-card-container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 40px; /* Space between cards */
-            padding: 20px;
-        }
-        .sushi-card {
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            width: 250px;
-            height: 330px;
-            margin: 1px;
-            overflow: hidden;
-            text-align: center;
-        }
-        .sushi-card:nth-of-type(5),
-        .sushi-card:nth-of-type(3),
-        .sushi-card:nth-of-type(6){
-            height: 345px;
-        }
-        .sushi-card:nth-of-type(1),
-        .sushi-card:nth-of-type(2),
-        .sushi-card:nth-of-type(4){
-            height: 365px;
-        }
-        .sushi-card img {
-            width: 100%;
-            height: 150px;
-            object-fit: cover;
-        }
-        .sushi-card .title {
-            font-size: 1.2em;
-            margin: 10px 0;
-            color: #7CFC00; /* Title color */
-        }
-        .sushi-card .description {
-            font-size: 0.9em;
-            margin: 5px 20px;
-            color: #00FFFF; /* Description color */
-        }
-        .sushi-card .price-weight {
-            font-size: 0.9em;
-            margin: 5px 20px;
-        }
-        .sushi-card .price {
-            color: #EE82EE; /* Price color */
-        }
-        .sushi-card .weight {
-            color: #000000; /* Weight color */
-        }
-        .sushi-card .add-to-cart {
-            display: block;
-            background-color: #ff6347;
-            color: white;
-            text-decoration: none;
-            padding: 10px;
-            margin: 10px;
-            border-radius: 4px;
-            transition: background-color 0.3s;
-        }
-        .sushi-card .add-to-cart:hover {
-            background-color: #ff4500;
-        }
     </style>
 </head>
 <body>
 
 
-<div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
-  <div class="carousel-indicators">
-    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
-    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
-    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="3" aria-label="Slide 4"></button>
-    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="4" aria-label="Slide 5"></button>
-    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="5" aria-label="Slide 6"></button>
-  </div>
-  <div class="carousel-inner">
-    <div class="carousel-item active">
-      <img src="margarita.png" class="d-block w-100" alt="...">
-      <div class="carousel-caption d-none d-md-block">
-        <h5>Маргарита</h5>
-      </div>
+<h1><strong>Вітаю! Ви знаходитесь у піцерії Yaposhka</strong></h1>
+
+<h3><strong>Тут ви можете замовити піцу, суші, салати, гарячі страви або якийсь гарнір)</strong></h3>
+
+<div style="height: 600px;">
+    <div id="carouselExample" class="carousel slide">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="pizzamargarita.jpg" class="d-block w-100" alt="...">
+            </div>
+            <div class="carousel-item">
+                <img src="kaliforniaroll.jpg" class="d-block w-100" alt="...">
+            </div>
+            <div class="carousel-item">
+                <img src="borsh.webp" class="d-block w-100" alt="...">
+            </div>
+            <div class="carousel-item">
+                <img src="kartoshkafri.webp" class="d-block w-100" alt="...">
+            </div>
+            <div class="carousel-item">
+                <img src="oliv'e.jpg" class="d-block w-100" alt="...">
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
     </div>
-    <div class="carousel-item">
-      <img src="peperonni.jpg" class="d-block w-100" alt="...">
-      <div class="carousel-caption d-none d-md-block">
-        <h5>Пепероні</h5>
-      </div>
-    </div>
-    <div class="carousel-item">
-      <img src="kaprichoza.jpg" class="d-block w-100" alt="...">
-      <div class="carousel-caption d-none d-md-block">
-        <h5>Капрічоза</h5>
-      </div>
-    </div>
-    <div class="carousel-item">
-      <img src="4cheese.jpg" class="d-block w-100" alt="...">
-      <div class="carousel-caption d-none d-md-block">
-        <h5>Чотири сири</h5>
-      </div>
-    </div>
-    <div class="carousel-item">
-      <img src="gavaiska.jpg" class="d-block w-100" alt="...">
-      <div class="carousel-caption d-none d-md-block">
-        <h5>Гавайська</h5>
-      </div>
-    </div>
-    <div class="carousel-item">
-      <img src="diablo.jpg" class="d-block w-100" alt="...">
-      <div class="carousel-caption d-none d-md-block">
-        <h5>Діабло</h5>
-      </div>
-    </div>
-  </div>
-  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Предыдущий</span>
-  </button>
-  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Следующий</span>
-  </button>
 </div>
 
 <div class="sushi-card-container">
