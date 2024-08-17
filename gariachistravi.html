@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <style>
+        body {
+            text-align: center;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #696969; /* Set gray background color */
+        }
+        .sushi-card-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 40px; /* Space between cards */
+            padding: 20px;
+        }
+        .sushi-card {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            width: 250px;
+            height: 330px;
+            margin: 1px;
+            overflow: hidden;
+            text-align: center;
+        }
+        .sushi-card:nth-of-type(1),
+        .sushi-card:nth-of-type(2),
+        .sushi-card:nth-of-type(3),
+        .sushi-card:nth-of-type(6),
+        .sushi-card:nth-of-type(4){
+            height: 345px;
+        }
+        .sushi-card img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+        }
+        .sushi-card .title {
+            font-size: 1.2em;
+            margin: 10px 0;
+            color: #7CFC00; /* Title color */
+        }
+        .sushi-card .description {
+            font-size: 0.9em;
+            margin: 5px 20px;
+            color: #00FFFF; /* Description color */
+        }
+        .sushi-card .price-weight {
+            font-size: 0.9em;
+            margin: 5px 20px;
+        }
+        .sushi-card .price {
+            color: #EE82EE; /* Price color */
+        }
+        .sushi-card .weight {
+            color: #000000; /* Weight color */
+        }
+        .sushi-card .add-to-cart {
+            display: block;
+            background-color: #ff6347;
+            color: white;
+            text-decoration: none;
+            padding: 10px;
+            margin: 10px;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+        .sushi-card .add-to-cart:hover {
+            background-color: #ff4500;
+        }
+        #notification {
+            visibility: hidden;
+            min-width: 250px;
+            background-color: green;
+            color: #00FFFF;
+            text-align: center;
+            border-radius: 2px;
+            padding: 16px;
+            position: fixed;
+            z-index: 1000;
+            left: 50%;
+            top: 10px;
+            transform: translateX(-50%);
+            font-size: 25px;
+            border-radius: 10px
+        }
+        #notification.show {
+            visibility: visible;
+            animation: fadein 1s, fadeout 1s 6s;
+        }
+        @keyframes fadein {
+            from {top: 0; opacity: 0;}
+            to {top: 10px; opacity: 1;}
+        }
+        @keyframes fadeout {
+            from {top: 10px; opacity: 1;}
+            to {top: 0; opacity: 0;}
+        }
+        .close-btn {
+            position: absolute;
+            top: 5px;
+            right: 10px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+         nav {
+            background-color: #FFFF00;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            position: fixed; /* Фиксированное позиционирование */
+            top: 0; /* Прикрепить к верху */
+            width: 100%; /* На всю ширину экрана */
+            z-index: 1000; /* Установить высокий z-index для видимости над другими элементами */
+        }
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+        nav ul li {
+            float: left;
+        }
+        nav ul li a {
+            display: block;
+            color: black;
+            text-align: center;
+            padding: 18px 20px;
+            text-decoration: none;
+        }
+        nav ul li a:hover, nav ul li a.active {
+            background-color: #0000CD;
+            color: white;
+        }
+        .carousel {
+            margin-top: 100px; /* Отступ сверху для слайдера */
+        }
+        .carousel-inner img {
+            max-width: 80%; /* Adjust the max-width as needed */
+            max-height: 600px; /* Adjust the max-height as needed */
+            margin: auto; /* Center the image horizontally */
+            margin-bottom: 70px;
+        }
+        .carousel-caption {
+            bottom: 70px; /* Move the caption higher */
+            background-color: #000000; /* Set the background color to black */
+            padding: 10px; /* Add padding around the caption */
+            border-radius: 5px;
+        }
+        .carousel-caption h5,
+        .carousel-caption p {
+            color: red; /* Set the text color to black */
+            font-weight: bold; /* Make the text bold */
+            margin: 0;
+        }
+        .nav-icons {
+            margin-left: auto;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-right: 20px;
+            position: relative;
+            left: -20px;
+            top: 17px;
+            display: inline-block;
+        }
+        .nav-icons a {
+            color: black;
+            font-size: 20px;
+            text-decoration: none;
+            position: relative;
+        }
+        .nav-icons a:hover {
+            color: #0000CD;
+        }
+        .cart-icon {
+            position: relative;
+            left: -26px;
+            top: 17px;
+            display: inline-block;
+        }
+        .cart-count {
+            position: absolute;
+            top: -10px;
+            left: 20px;
+            background-color: green;
+            color: white;
+            padding: 3px 7px;
+            border-radius: 50%;
+            font-size: 13px;
+        }
+        .cart-icon svg,
+        .nav-icons svg {
+            width: 32px;
+            height: 32px;
+        }
+        #dropdown-products {
+            display: none;
+            background-color: green;
+        }
+        #menu-products:hover #dropdown-products {
+            display: block;
+        }
+        #dropdown-products li a {
+            text-decoration: none;
+            color: #8B008B;
+        }
+        .menu-icon {
+            position: fixed;
+            top: 14px; /* Raise it higher; adjust as needed */
+            right: auto;
+            left: 1427px;
+            cursor: pointer;
+            z-index: 1000;
+        }
+
+        .menu-icon span {
+            display: block;
+            width: 35px;
+            height: 5px;
+            margin: 6px 0;
+            background-color: green; /* Change the color to black */
+            transition: 0.4s;
+        }
+        .side-menu {
+            height: 100%;
+            width: 0;
+            position: fixed;
+            top: 0;
+            right: 0;
+            background-color: black;
+            overflow-x: hidden;
+            transition: 0.5s;
+            padding-top: 60px;
+            z-index: 999;
+        }
+
+        .side-menu ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .side-menu ul li {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .side-menu ul li a {
+            color: white;
+            font-size: 25px;
+            text-decoration: none;
+            display: inline-block;
+            position: relative;
+        }
+
+        .side-menu ul li a:after {
+            content: '';
+            display: block;
+            height: 2px;
+            width: 0;
+            background: #00FF00;
+            transition: width 0.4s;
+        }
+
+        .side-menu ul li a:hover:after {
+            width: 100%;
+        }
+        .address-menu {
+            height: 100%;
+            width: 0;
+            position: fixed;
+            top: 0;
+            left: 0;
+            background-color: black;
+            overflow-x: hidden;
+            transition: 0.5s;
+            padding-top: 60px;
+            z-index: 999;
+        }
+
+        .address-menu ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .address-menu ul li {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .address-menu ul li a {
+            color: white;
+            font-size: 20px;
+            text-decoration: none;
+            display: inline-block;
+            position: relative;
+        }
+
+        .address-menu ul li a:after {
+            content: '';
+            display: block;
+            height: 2px;
+            width: 0;
+            background: #00FF00;
+            transition: width 0.4s;
+        }
+        .address-menu ul li:first-child a {
+            color: white; /* Ensure this specific link is white */
+            font-weight: bold; /* Make the text bold if desired */
+            pointer-events: none;
+        }
+
+        .address-menu ul li a:hover:after {
+            width: 100%;
+        }
+        .bottom-menu {
+            width: 100%;
+            background-color: black;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            padding: 20px 0;
+            z-index: 999;
+        }
+
+        .bottom-menu ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        .bottom-menu ul li {
+            margin: 0 20px;
+        }
+
+        .bottom-menu ul li a {
+            color: white;
+            font-size: 25px;
+            text-decoration: none;
+            display: inline-block;
+            position: relative;
+        }
+
+        .bottom-menu ul li a:after {
+            content: '';
+            display: block;
+            height: 2px;
+            width: 0;
+            background: #FF00FF;
+            transition: width 0.4s;
+        }
+
+        .bottom-menu ul li a:hover:after {
+            width: 100%;
+        }
+        .bottom-menu a.active {
+            text-decoration: underline;
+            color: #FFFF00; /* Можно добавить любой цвет, который вам нравится */
+        }
+    </style>
+</head>
+<body>
+<nav>
+    <ul>
+        <li><a href="pizza.html" id="pizza-link">Піца</a></li>
+        <li><a href="sushi.html" id="sushi-link">Суші</a></li>
+        <li><a href="salats.html" id="salats-link">Салати</a></li>
+        <li><a href="gariachistravi.html" id="gariachistravi-link">Гарячі страви</a></li>
+        <li><a href="garnirs.html" id="garnirs-link">Гарніри</a></li>
+        <li class="busket"><a href="busket.html">Кошик</a></li>
+    </ul>
+    <div class="nav-icons">
+    <div id="menu-products">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-telephone" viewBox="0 0 16 16">
+            <path d="M3.654 1.328a.678.678 0 0 0-1.015-.063L1.605 2.3c-.483.484-.661 1.169-.45 1.77a17.6 17.6 0 0 0 4.168 6.608 17.6 17.6 0 0 0 6.608 4.168c.601.211 1.286.033 1.77-.45l1.034-1.034a.678.678 0 0 0-.063-1.015l-2.307-1.794a.68.68 0 0 0-.58-.122l-2.19.547a1.75 1.75 0 0 1-1.657-.459L5.482 8.062a1.75 1.75 0 0 1-.46-1.657l.548-2.19a.68.68 0 0 0-.122-.58zM1.884.511a1.745 1.745 0 0 1 2.612.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.68.68 0 0 0 .178.643l2.457 2.457a.68.68 0 0 0 .644.178l2.189-.547a1.75 1.75 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.6 18.6 0 0 1-7.01-4.42 18.6 18.6 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877z"/>
+        </svg>
+        <ul id="dropdown-products">
+            <li><a href="https://t.me/sheremetkaaaa"><strong>@sheremetkaaaa</strong></a></li>
+            <li><a href="https://t.me/Foryou23y"><strong>@Foryou23y</strong></a></li>
+            <li><a href="https://t.me/htmluser_0594"><strong>@htmluser_0594</strong></a></li>
+        </ul>
+    </div>
+    </div>
+    <div class="cart-icon">
+    <a href="busket.html"> <!-- Указываем ссылку на страницу корзины -->
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart2" id="cart-icon" viewBox="0 0 16 16">
+            <path d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5M3.14 5l1.25 5h8.22l1.25-5zM5 13a1 1 0 1 0 0 2 1 1 0 0 0 0-2m-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0m9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2m-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0"/>
+        </svg>
+        <span id="cart-count" class="cart-count">0</span> <!-- Отображение числа товаров -->
+    </a>
+    </div>
+
+</nav>
+
+<div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+  <div class="carousel-indicators">
+    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="3" aria-label="Slide 4"></button>
+    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="4" aria-label="Slide 5"></button>
+    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="5" aria-label="Slide 6"></button>
+  </div>
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="borsh.webp" class="d-block w-100" alt="...">
+      <div class="carousel-caption d-none d-md-block">
+        <h5>Борщ</h5>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <img src="kotletapokievski.jpeg" class="d-block w-100" alt="...">
+      <div class="carousel-caption d-none d-md-block">
+        <h5>Котлети по-київськи</h5>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <img src="bifshtecs.jpg" class="d-block w-100" alt="...">
+      <div class="carousel-caption d-none d-md-block">
+        <h5>Біфштекс</h5>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <img src="jarke.jpg" class="d-block w-100" alt="...">
+      <div class="carousel-caption d-none d-md-block">
+        <h5>Жарке</h5>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <img src="plov.jpg" class="d-block w-100" alt="...">
+      <div class="carousel-caption d-none d-md-block">
+        <h5>Плов</h5>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <img src="golubtsi.jpg" class="d-block w-100" alt="...">
+      <div class="carousel-caption d-none d-md-block">
+        <h5>Голубці</h5>
+      </div>
+    </div>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Предыдущий</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Следующий</span>
+  </button>
+</div>
+
+<div class="sushi-card-container">
+    <div class="sushi-card">
+        <img src="borsh.webp" alt="Sushi Image">
+        <div class="title"><strong>Борщ</strong></div>
+        <div class="description"><strong>Традиційний український суп з буряка</strong></div>
+        <div class="price-weight"><span class="price"><strong>Ціна: 140 грн/280гр</strong></span><br><span class="weight"><strong>Вага: 280 г</strong></span></div>
+        <form action="Busket.html" method="POST">
+            <input hidden type="text" name="title" value="Борщ">
+            <input hidden type="text" name="price-weight" value="140">
+            <input type="submit" class="add-to-card" onclick ="addToCart()" value="Додати у кошик">
+        </form>
+    </div>
+
+    <div class="sushi-card">
+        <img src="kotletapokievski.jpeg" alt="Sushi Image">
+        <div class="title"><strong>Котлети по-київськи</strong></div>
+        <div class="description"><strong>Куряче філе з маслом всередині</strong></div>
+        <div class="price-weight"><span class="price"><strong>Ціна: 230 грн/280гр</strong></span><br><span class="weight"><strong>Вага: 280 г</strong></span></div>
+        <form action="Busket.html" method="POST">
+            <input hidden type="text" name="title" value="Котлети по-київськи">
+            <input hidden type="text" name="price-weight" value="230">
+            <input type="submit" class="add-to-card" onclick ="addToCart()" value="Додати у кошик">
+        </form>
+    </div>
+
+    <div class="sushi-card">
+        <img src="bifshtecs.jpg" alt="Sushi Image">
+        <div class="title"><strong>Біфштекс</strong></div>
+        <div class="description"><strong>Смажене м'ясо, зазвичай яловичина</strong></div>
+        <div class="price-weight"><span class="price"><strong>Ціна: 195 грн/180гр</strong></span><br><span class="weight"><strong>Вага: 180 г</strong></span></div>
+        <form action="Busket.html" method="POST">
+            <input hidden type="text" name="title" value="Біфштекс">
+            <input hidden type="text" name="price-weight" value="195">
+            <input type="submit" class="add-to-card" onclick ="addToCart()" value="Додати у кошик">
+        </form>
+    </div>
+
+    <div class="sushi-card">
+        <img src="jarke.jpg" alt="Sushi Image">
+        <div class="title"><strong>Жарке</strong></div>
+        <div class="description"><strong>Тушковане м'ясо з картоплею та овочами</strong></div>
+        <div class="price-weight"><span class="price"><strong>Ціна: 175 грн/200гр</strong></span><br><span class="weight"><strong>Вага: 200 г</strong></span></div>
+        <form action="Busket.html" method="POST">
+            <input hidden type="text" name="title" value="Жарке">
+            <input hidden type="text" name="price-weight" value="175">
+            <input type="submit" class="add-to-card" onclick ="addToCart()" value="Додати у кошик">
+        </form>
+    </div>
+
+    <div class="sushi-card">
+        <img src="plov.jpg" alt="Sushi Image">
+        <div class="title"><strong>Плов</strong></div>
+        <div class="description"><strong>Рис з м'ясом і спеціями</strong></div>
+        <div class="price-weight"><span class="price"><strong>Ціна: 155 грн/185гр</strong></span><br><span class="weight"><strong>Вага: 185 г</strong></span></div>
+        <form action="Busket.html" method="POST">
+            <input hidden type="text" name="title" value="Плов">
+            <input hidden type="text" name="price-weight" value="155">
+            <input type="submit" class="add-to-card" onclick ="addToCart()" value="Додати у кошик">
+        </form>
+    </div>
+
+    <div class="sushi-card">
+        <img src="golubtsi.jpg" alt="Sushi Image">
+        <div class="title"><strong>Голубці</strong></div>
+        <div class="description"><strong>М'ясний фарш у капустяному листі.</strong></div>
+        <div class="price-weight"><span class="price"><strong>Ціна: 165 грн/205гр</strong></span><br><span class="weight"><strong>Вага: 205 г</strong></span></div>
+        <form action="Busket.html" method="POST">
+            <input hidden type="text" name="title" value="Голубці">
+            <input hidden type="text" name="price-weight" value="165">
+            <input type="submit" class="add-to-card" onclick ="addToCart()" value="Додати у кошик">
+        </form>
+    </div>
+</div>
+
+<div id="notification">
+    Страву додано до кошика!
+    <span class="close-btn" onclick="closeNotification()">×</span>
+</div>
+
+<div class="menu-icon" onclick="toggleMenu()">
+    <span></span>
+    <span></span>
+    <span></span>
+</div>
+
+<div class="side-menu" id="sideMenu">
+    <ul>
+        <li><a href="pizza.html">Піца</a></li>
+        <li><a href="sushi.html">Суші</a></li>
+        <li><a href="salats.html">Салати</a></li>
+        <li><a href="gariachistravi.html">Гарячі страви</a></li>
+        <li><a href="garnirs.html">Гарніри</a></li>
+        <li class="busket"><a href="busket.html">Кошик</a></li>
+    </ul>
+</div>
+
+<!-- Existing Hamburger Menu -->
+<div class="menu-icon" onclick="toggleMenu()">
+    <span></span>
+    <span></span>
+    <span></span>
+</div>
+
+<!-- New Address Block -->
+
+<!-- Address Menu -->
+<div class="address-menu" id="addressMenu">
+    <ul>
+        <li><a>Наші адреси</a></li>
+        <li><a href="https://www.google.com/maps/search/%D1%8F%D0%BF%D0%BE%D1%88%D0%BA%D0%B0+%D0%BA%D0%B8%D0%B5%D0%B2%D1%81%D0%BA%D0%B8%D0%B5+%D0%B0%D0%B4%D1%80%D0%B5%D1%81%D0%B0/@50.4593288,30.5743612,10.22z?authuser=0&entry=ttu">Київ</a></li>
+        <li><a href="https://www.google.com/maps/search/%D1%8F%D0%BF%D0%BE%D1%88%D0%BA%D0%B0+%D1%85%D0%B0%D1%80%D0%B1%D0%BA%D0%BE%D0%B2%D1%81%D0%BA%D0%B8%D0%B5+%D0%B0%D0%B4%D1%80%D0%B5%D1%81%D0%B0/@49.7811941,36.2411648,9.42z?authuser=0&entry=ttu">Харків</a></li>
+        <li><a href="https://www.google.com/maps/search/%D1%8F%D0%BF%D0%BE%D1%88%D0%BA%D0%B0+%D1%82%D0%BE%D0%BB%D1%8C%D0%BA%D0%BE+%D0%B2+%D0%BE%D0%B4%D0%B5%D1%81%D1%81%D0%B5/@46.4967125,30.6271639,9.68z?authuser=0&entry=ttu">Одеса</a></li>
+        <li><a href="https://www.google.com/maps/place/Yapiko/@49.5955492,34.5649769,11.46z/data=!4m6!3m5!1s0x40d82f92b5fa7603:0xf2915ca62d4cd7bf!8m2!3d49.5944166!4d34.5348955!16s%2Fg%2F11vbzm_hsr?authuser=0&entry=ttu">Полтава</a></li>
+    </ul>
+</div>
+
+<div class="bottom-menu">
+    <ul>
+        <li><a href="pizza.html">Піца</a></li>
+        <li><a href="sushi.html">Суші</a></li>
+        <li><a href="salats.html">Салати</a></li>
+        <li><a href="gariachistravi.html">Гарячі страви</a></li>
+        <li><a href="garnirs.html">Гарніри</a></li>
+        <li class="busket"><a href="busket.html">Кошик</a></li>
+    </ul>
+</div>
+
+
+<script>
+     function toggleMenu() {
+        const sideMenu = document.getElementById("sideMenu");
+        if (sideMenu.style.width === "250px") {
+            sideMenu.style.width = "0";
+        } else {
+            sideMenu.style.width = "250px";
+        }
+    }
+
+     document.addEventListener('DOMContentLoaded', () => {
+        const cartCountElement = document.getElementById('cart-count'); // Элемент для отображения числа товаров в корзине
+        let cartCount = 0;
+
+        // Добавляем обработчик события для кнопок "Добавить в корзину"
+        document.querySelectorAll('.add-to-cart').forEach(button => {
+            button.addEventListener('click', (e) => {
+                e.preventDefault();
+                cartCount++;
+                cartCountElement.textContent = cartCount;
+                addToCart();
+            });
+        });
+
+
+
+        window.addEventListener('click', (event) => {
+            if (event.target == cartModal) {
+                cartModal.style.display = 'none';
+            }
+        });
+    });
+
+    // Функция для показа уведомления
+    function addToCart() {
+        var notification = document.getElementById("notification");
+        notification.className = "show";
+        setTimeout(function() {
+            notification.className = notification.className.replace("show", "");
+        }, 6000);
+    }
+
+    // Функция для закрытия уведомления
+    function closeNotification() {
+        var notification = document.getElementById("notification");
+        notification.className = notification.className.replace("show", "");
+    }
+
+    // Функция для выделения текущей страницы в навигации
+    function highlightCurrentPage() {
+        const path = window.location.pathname;
+        const navLinks = document.querySelectorAll('nav ul li a');
+
+        navLinks.forEach(link => {
+            if (link.getAttribute('href') === path) {
+                link.classList.add('active');
+            }
+        });
+    }
+
+    // Вызов функции при загрузке страницы
+    highlightCurrentPage();
+    function toggleMenu() {
+        const sideMenu = document.getElementById("sideMenu");
+        const addressMenu = document.getElementById("addressMenu");
+
+        if (sideMenu.style.width === "250px" || addressMenu.style.width === "250px") {
+            sideMenu.style.width = "0";
+            addressMenu.style.width = "0";
+        } else {
+            sideMenu.style.width = "250px";
+            addressMenu.style.width = "250px";
+        }
+    }
+    document.addEventListener('DOMContentLoaded', function() {
+    // Получаем текущий URL
+    const currentPath = window.location.pathname;
+
+    // Получаем все элементы меню
+    const menuItems = document.querySelectorAll('.bottom-menu a');
+
+    // Проходимся по всем элементам меню
+    menuItems.forEach(item => {
+        // Если href совпадает с текущим путем, добавляем класс active
+        if (item.getAttribute('href') === currentPath) {
+            item.classList.add('active');
+        }
+    });
+});
+
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+<div style="height: 70px;"></div>
+</body>
+</html>
