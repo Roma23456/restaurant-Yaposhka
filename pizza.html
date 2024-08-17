@@ -117,6 +117,10 @@
             overflow: hidden;
             display: flex;
             justify-content: center;
+            position: fixed; /* Фиксированное позиционирование */
+            top: 0; /* Прикрепить к верху */
+            width: 100%; /* На всю ширину экрана */
+            z-index: 1000; /* Установить высокий z-index для видимости над другими элементами */
         }
         nav ul {
             list-style-type: none;
@@ -368,66 +372,63 @@
     </style>
 </head>
 <body>
-<nav>
-    <ul>
-        <li><a href="pizza.html" id="pizza-link">Піца</a></li>
-        <li><a href="sushi.html" id="sushi-link">Суші</a></li>
-        <li><a href="salats.html" id="salats-link">Салати</a></li>
-        <li><a href="gariachistravi.html" id="gariachistravi-link">Гарячі страви</a></li>
-        <li><a href="garnirs.html" id="garnirs-link">Гарніри</a></li>
-        <li class="busket"><a href="busket.html">Кошик</a></li>
-    </ul>
-    <div class="nav-icons">
-    <div id="menu-products">
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-telephone" viewBox="0 0 16 16">
-            <path d="M3.654 1.328a.678.678 0 0 0-1.015-.063L1.605 2.3c-.483.484-.661 1.169-.45 1.77a17.6 17.6 0 0 0 4.168 6.608 17.6 17.6 0 0 0 6.608 4.168c.601.211 1.286.033 1.77-.45l1.034-1.034a.678.678 0 0 0-.063-1.015l-2.307-1.794a.68.68 0 0 0-.58-.122l-2.19.547a1.75 1.75 0 0 1-1.657-.459L5.482 8.062a1.75 1.75 0 0 1-.46-1.657l.548-2.19a.68.68 0 0 0-.122-.58zM1.884.511a1.745 1.745 0 0 1 2.612.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.68.68 0 0 0 .178.643l2.457 2.457a.68.68 0 0 0 .644.178l2.189-.547a1.75 1.75 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.6 18.6 0 0 1-7.01-4.42 18.6 18.6 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877z"/>
-        </svg>
-        <ul id="dropdown-products">
-            <li><a href="https://t.me/sheremetkaaaa"><strong>@sheremetkaaaa</strong></a></li>
-            <li><a href="https://t.me/Foryou23y"><strong>@Foryou23y</strong></a></li>
-            <li><a href="https://t.me/htmluser_0594"><strong>@htmluser_0594</strong></a></li>
-        </ul>
-    </div>
-    </div>
-    <div class="cart-icon">
-    <a href="busket.html"> <!-- Указываем ссылку на страницу корзины -->
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart2" id="cart-icon" viewBox="0 0 16 16">
-            <path d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5M3.14 5l1.25 5h8.22l1.25-5zM5 13a1 1 0 1 0 0 2 1 1 0 0 0 0-2m-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0m9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2m-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0"/>
-        </svg>
-        <span id="cart-count" class="cart-count">0</span> <!-- Отображение числа товаров -->
-    </a>
-    </div>
 
-</nav>
 
-<div style="height: 600px;">
-    <div id="carouselExample" class="carousel slide">
-        <div class="carousel-inner">
-            <div class="carousel-item active">
-                <img src="pizzamargarita.jpg" class="d-block w-100" alt="...">
-            </div>
-            <div class="carousel-item">
-                <img src="kaliforniaroll.jpg" class="d-block w-100" alt="...">
-            </div>
-            <div class="carousel-item">
-                <img src="borsh.webp" class="d-block w-100" alt="...">
-            </div>
-            <div class="carousel-item">
-                <img src="kartoshkafri.webp" class="d-block w-100" alt="...">
-            </div>
-            <div class="carousel-item">
-                <img src="oliv'e.jpg" class="d-block w-100" alt="...">
-            </div>
-        </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-        </button>
+<div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+  <div class="carousel-indicators">
+    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="3" aria-label="Slide 4"></button>
+    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="4" aria-label="Slide 5"></button>
+    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="5" aria-label="Slide 6"></button>
+  </div>
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="margarita.png" class="d-block w-100" alt="...">
+      <div class="carousel-caption d-none d-md-block">
+        <h5>Маргарита</h5>
+      </div>
     </div>
+    <div class="carousel-item">
+      <img src="peperonni.jpg" class="d-block w-100" alt="...">
+      <div class="carousel-caption d-none d-md-block">
+        <h5>Пепероні</h5>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <img src="kaprichoza.jpg" class="d-block w-100" alt="...">
+      <div class="carousel-caption d-none d-md-block">
+        <h5>Капрічоза</h5>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <img src="4cheese.jpg" class="d-block w-100" alt="...">
+      <div class="carousel-caption d-none d-md-block">
+        <h5>Чотири сири</h5>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <img src="gavaiska.jpg" class="d-block w-100" alt="...">
+      <div class="carousel-caption d-none d-md-block">
+        <h5>Гавайська</h5>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <img src="diablo.jpg" class="d-block w-100" alt="...">
+      <div class="carousel-caption d-none d-md-block">
+        <h5>Діабло</h5>
+      </div>
+    </div>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Предыдущий</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Следующий</span>
+  </button>
 </div>
 
 <div class="sushi-card-container">
