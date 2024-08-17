@@ -613,14 +613,10 @@
     highlightCurrentPage();
     function toggleMenu() {
         const sideMenu = document.getElementById("sideMenu");
-        const addressMenu = document.getElementById("addressMenu");
-
-        if (sideMenu.style.width === "250px" || addressMenu.style.width === "250px") {
+        if (sideMenu.style.width === "250px") {
             sideMenu.style.width = "0";
-            addressMenu.style.width = "0";
         } else {
             sideMenu.style.width = "250px";
-            addressMenu.style.width = "250px";
         }
     }
     document.addEventListener('DOMContentLoaded', function() {
@@ -631,7 +627,12 @@
     const menuItems = document.querySelectorAll('.bottom-menu a');
 
     // Проходимся по всем элементам меню
-    
+    menuItems.forEach(item => {
+        // Если href совпадает с текущим путем, добавляем класс active
+        if (item.getAttribute('href') === currentPath) {
+            item.classList.add('active');
+        }
+    });
 });
 
 </script>
