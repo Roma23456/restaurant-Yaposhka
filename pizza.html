@@ -29,35 +29,32 @@
             overflow: hidden;
             text-align: center;
         }
-        
+        .sushi-card:nth-of-type(5),
+        .sushi-card:nth-of-type(3),
+        .sushi-card:nth-of-type(6){
+            height: 345px;
+        }
+        .sushi-card:nth-of-type(1),
+        .sushi-card:nth-of-type(2),
+        .sushi-card:nth-of-type(4){
+            height: 365px;
+        }
+        .sushi-card img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+        }
+        .sushi-card .title {
+            font-size: 1.2em;
+            margin: 10px 0;
+            color: #7CFC00; /* Title color */
+        }
         .sushi-card .description {
             font-size: 0.9em;
             margin: 5px 20px;
             color: #00FFFF; /* Description color */
         }
-        .sushi-card .price-weight {
-            font-size: 0.9em;
-            margin: 5px 20px;
-        }
-        .sushi-card .price {
-            color: #EE82EE; /* Price color */
-        }
-        .sushi-card .weight {
-            color: #000000; /* Weight color */
-        }
-        .sushi-card .add-to-cart {
-            display: block;
-            background-color: #ff6347;
-            color: white;
-            text-decoration: none;
-            padding: 10px;
-            margin: 10px;
-            border-radius: 4px;
-            transition: background-color 0.3s;
-        }
-        .sushi-card .add-to-cart:hover {
-            background-color: #ff4500;
-        }
+        
 
 
 
