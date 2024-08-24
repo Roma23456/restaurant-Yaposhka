@@ -403,7 +403,6 @@
 
 </nav>
 
-
 <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
   <div class="carousel-indicators">
     <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
@@ -470,7 +469,7 @@
         <form action="Busket.html" method="POST">
             <input hidden type="text" name="title" value="Картопля фрі">
             <input hidden type="text" name="price-weight" value="100">
-            <input type="submit" class="add-to-card" onclick ="addToCart()" value="Додати у кошик">
+            <a href="#" class="add-to-cart" onclick="addToCart()">Додати в кошик</a>
         </form>
     </div>
 
@@ -482,7 +481,7 @@
         <form action="Busket.html" method="POST">
             <input hidden type="text" name="title" value="Рис">
             <input hidden type="text" name="price-weight" value="125">
-            <input type="submit" class="add-to-card" onclick ="addToCart()" value="Додати у кошик">
+            <a href="#" class="add-to-cart" onclick="addToCart()">Додати в кошик</a>
         </form>
     </div>
 
@@ -494,7 +493,7 @@
         <form action="Busket.html" method="POST">
             <input hidden type="text" name="title" value="Гречка з м'ясом">
             <input hidden type="text" name="price-weight" value="130">
-            <input type="submit" class="add-to-card" onclick ="addToCart()" value="Додати у кошик">
+            <a href="#" class="add-to-cart" onclick="addToCart()">Додати в кошик</a>
         </form>
     </div>
 
@@ -506,7 +505,7 @@
         <form action="Busket.html" method="POST">
             <input hidden type="text" name="title" value="Овочі гриль">
             <input hidden type="text" name="price-weight" value="145">
-            <input type="submit" class="add-to-card" onclick ="addToCart()" value="Додати у кошик">
+            <a href="#" class="add-to-cart" onclick="addToCart()">Додати в кошик</a>
         </form>
     </div>
 
@@ -518,7 +517,7 @@
         <form action="Busket.html" method="POST">
             <input hidden type="text" name="title" value="Пюре з картоплі">
             <input hidden type="text" name="price-weight" value="120">
-            <input type="submit" class="add-to-card" onclick ="addToCart()" value="Додати у кошик">
+            <a href="#" class="add-to-cart" onclick="addToCart()">Додати в кошик</a>
         </form>
     </div>
 
@@ -530,7 +529,7 @@
         <form action="Busket.html" method="POST">
             <input hidden type="text" name="title" value="Кускус">
             <input hidden type="text" name="price-weight" value="150">
-            <input type="submit" class="add-to-card" onclick ="addToCart()" value="Додати у кошик">
+            <a href="#" class="add-to-cart" onclick="addToCart()">Додати в кошик</a>
         </form>
     </div>
 </div>
@@ -600,10 +599,9 @@
     }
 
      document.addEventListener('DOMContentLoaded', () => {
-        const cartCountElement = document.getElementById('cart-count'); // Элемент для отображения числа товаров в корзине
+        const cartCountElement = document.getElementById('cart-count');
         let cartCount = 0;
 
-        // Добавляем обработчик события для кнопок "Добавить в корзину"
         document.querySelectorAll('.add-to-cart').forEach(button => {
             button.addEventListener('click', (e) => {
                 e.preventDefault();
@@ -613,8 +611,6 @@
             });
         });
 
-
-
         window.addEventListener('click', (event) => {
             if (event.target == cartModal) {
                 cartModal.style.display = 'none';
@@ -622,7 +618,6 @@
         });
     });
 
-    // Функция для показа уведомления
     function addToCart() {
         var notification = document.getElementById("notification");
         notification.className = "show";
@@ -631,13 +626,11 @@
         }, 6000);
     }
 
-    // Функция для закрытия уведомления
     function closeNotification() {
         var notification = document.getElementById("notification");
         notification.className = notification.className.replace("show", "");
     }
 
-    // Функция для выделения текущей страницы в навигации
     function highlightCurrentPage() {
         const path = window.location.pathname;
         const navLinks = document.querySelectorAll('nav ul li a');
@@ -649,7 +642,6 @@
         });
     }
 
-    // Вызов функции при загрузке страницы
     highlightCurrentPage();
     function toggleMenu() {
         const sideMenu = document.getElementById("sideMenu");
@@ -664,21 +656,16 @@
         }
     }
     document.addEventListener('DOMContentLoaded', function() {
-    // Получаем текущий URL
     const currentPath = window.location.pathname;
 
-    // Получаем все элементы меню
     const menuItems = document.querySelectorAll('.bottom-menu a');
 
-    // Проходимся по всем элементам меню
     menuItems.forEach(item => {
-        // Если href совпадает с текущим путем, добавляем класс active
         if (item.getAttribute('href') === currentPath) {
             item.classList.add('active');
         }
     });
 });
-
 </script>
 
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
