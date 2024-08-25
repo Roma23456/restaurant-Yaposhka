@@ -364,9 +364,10 @@
         .bottom-menu ul li a:hover:after {
             width: 100%;
         }
+
         .bottom-menu a.active {
             text-decoration: underline;
-            color: #FFFF00; /* Можно добавить любой цвет, который вам нравится */
+            color: #FFFF00; /* Цвет активного пункта меню */
         }
 
     </style>
@@ -612,6 +613,8 @@
             });
         });
 
+
+
         window.addEventListener('click', (event) => {
             if (event.target == cartModal) {
                 cartModal.style.display = 'none';
@@ -657,20 +660,30 @@
         }
     }
     document.addEventListener('DOMContentLoaded', function() {
-    // Получаем текущий URL
-    const currentPath = window.location.pathname;
+    const currentPath = window.location.pathname.split("/").pop(); // Получаем название файла страницы
 
-    // Получаем все элементы меню
     const menuItems = document.querySelectorAll('.bottom-menu a');
 
-    // Проходимся по всем элементам меню
+    // Проходим по всем пунктам меню и добавляем класс активной ссылке
     menuItems.forEach(item => {
-        // Если href совпадает с текущим путем, добавляем класс active
-        if (item.getAttribute('href') === currentPath) {
+        const linkPath = item.getAttribute('href');
+
+        if (linkPath === currentPath) {
             item.classList.add('active');
         }
     });
 });
+
+// Удаляем preventDefault для того, чтобы страницы могли переключаться
+const navLinks = document.querySelectorAll('.bottom-menu a');
+
+navLinks.forEach(link => {
+    link.addEventListener('click', function() {
+        navLinks.forEach(otherLink => otherLink.classList.remove('active'));
+        this.classList.add('active');
+    });
+});
+
 
 </script>
 

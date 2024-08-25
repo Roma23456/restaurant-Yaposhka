@@ -656,14 +656,25 @@
         }
     }
     document.addEventListener('DOMContentLoaded', function() {
-    const currentPath = window.location.pathname;
+    const currentPath = window.location.pathname.split("/").pop();
 
     const menuItems = document.querySelectorAll('.bottom-menu a');
 
     menuItems.forEach(item => {
-        if (item.getAttribute('href') === currentPath) {
+        const linkPath = item.getAttribute('href');
+
+        if (linkPath === currentPath) {
             item.classList.add('active');
         }
+    });
+});
+
+const navLinks = document.querySelectorAll('.bottom-menu a');
+
+navLinks.forEach(link => {
+    link.addEventListener('click', function() {
+        navLinks.forEach(otherLink => otherLink.classList.remove('active'));
+        this.classList.add('active');
     });
 });
 </script>
