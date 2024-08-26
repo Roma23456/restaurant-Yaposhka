@@ -2,168 +2,106 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <title>Піцерія</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
-            text-align: center;
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
             background-color: #696969; /* Set gray background color */
         }
+
         .carousel-inner img {
-            max-width: 80%; /* Adjust the max-width as needed */
-            max-height: 550px; /* Adjust the max-height as needed */
-            margin: auto; /* Center the image horizontally */
+            max-width: 80%;
+            max-height: 550px;
+            margin: auto;
             margin-bottom: 60px;
         }
-        .btn-info {
-            padding: 15px 30px; /* Increase padding for larger button */
-            font-size: 45px; /* Increase font size for better visibility */
+
+        h1, h3 {
+            text-align: center;
         }
+
         h1 {
-            margin-top: 40px; /* Adjust this value as needed */
+            margin-top: 40px;
             margin-bottom: 25px;
             color: #00FF00;
         }
+
         h3 {
             margin-bottom: 50px;
             color: #191970;
         }
-        .bottom-menu {
-            width: 100%;
+
+        /* Стили для меню */
+        .menu-section {
             background-color: black;
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            padding: 20px 0;
-            z-index: 999;
+            padding: 40px 0;
+            text-align: center;
         }
 
-        .bottom-menu ul {
+        .menu-section ul {
             list-style-type: none;
-            padding: 0;
             margin: 0;
-            display: flex;
-            justify-content: center;
+            padding: 0;
         }
 
-        .bottom-menu ul li {
-            margin: 0 20px;
+        .menu-section ul li {
+            margin: 20px 0;
         }
 
-        .bottom-menu ul li a {
+        .menu-section ul li a {
             color: white;
-            font-size: 25px;
+            font-size: 30px;
             text-decoration: none;
             display: inline-block;
             position: relative;
         }
 
-        .bottom-menu ul li a:after {
+        /* Эффект подчеркивания при наведении */
+        .menu-section ul li a:after {
             content: '';
             display: block;
-            height: 2px;
+            height: 4px;
             width: 0;
-            background: #FF00FF;
+            background: #FF0000;
             transition: width 0.4s;
         }
 
-        .bottom-menu ul li a:hover:after {
+        .menu-section ul li a:hover:after {
             width: 100%;
         }
-        .sushi-card-container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 40px; /* Space between cards */
-            padding: 20px;
-        }
-        .sushi-card {
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            width: 250px;
-            height: 330px;
-            margin: 1px;
-            overflow: hidden;
-            text-align: center;
-        }
-        .sushi-card:nth-of-type(5),
-        .sushi-card:nth-of-type(3),
-        .sushi-card:nth-of-type(6){
-            height: 345px;
-        }
-        .sushi-card:nth-of-type(1),
-        .sushi-card:nth-of-type(2),
-        .sushi-card:nth-of-type(4){
-            height: 365px;
-        }
-        .sushi-card img {
-            width: 100%;
-            height: 150px;
-            object-fit: cover;
-        }
-        .sushi-card .title {
-            font-size: 1.2em;
-            margin: 10px 0;
-            color: #7CFC00; /* Title color */
-        }
-        .sushi-card .description {
-            font-size: 0.9em;
-            margin: 5px 20px;
-            color: #00FFFF; /* Description color */
-        }
-        .sushi-card .price-weight {
-            font-size: 0.9em;
-            margin: 5px 20px;
-        }
-        .sushi-card .price {
-            color: #EE82EE; /* Price color */
-        }
-        .sushi-card .weight {
-            color: #000000; /* Weight color */
-        }
-        .sushi-card .add-to-cart {
-            display: block;
-            background-color: #ff6347;
-            color: white;
-            text-decoration: none;
-            padding: 10px;
-            margin: 10px;
-            border-radius: 4px;
-            transition: background-color 0.3s;
-        }
-        .sushi-card .add-to-cart:hover {
-            background-color: #ff4500;
 
-
+        /* Отступы после карусели */
+        .carousel-container {
+            height: 600px;
+        }
     </style>
 </head>
 <body>
 
-
 <h1><strong>Вітаю! Ви знаходитесь у піцерії Yaposhka</strong></h1>
+<h3><strong>Тут ви можете замовити піцу, суші, салати, гарячі страви або якийсь гарнір</strong></h3>
 
-<h3><strong>Тут ви можете замовити піцу, суші, салати, гарячі страви або якийсь гарнір)</strong></h3>
-
-<div style="height: 600px;">
+<!-- Карусель -->
+<div class="carousel-container">
     <div id="carouselExample" class="carousel slide">
         <div class="carousel-inner">
             <div class="carousel-item active">
-                <img src="pizzamargarita.jpg" class="d-block w-100" alt="...">
+                <img src="pizzamargarita.jpg" class="d-block w-100" alt="Піца">
             </div>
             <div class="carousel-item">
-                <img src="kaliforniaroll.jpg" class="d-block w-100" alt="...">
+                <img src="kaliforniaroll.jpg" class="d-block w-100" alt="Суші">
             </div>
             <div class="carousel-item">
-                <img src="borsh.webp" class="d-block w-100" alt="...">
+                <img src="borsh.webp" class="d-block w-100" alt="Борщ">
             </div>
             <div class="carousel-item">
-                <img src="kartoshkafri.webp" class="d-block w-100" alt="...">
+                <img src="kartoshkafri.webp" class="d-block w-100" alt="Картопля фрі">
             </div>
             <div class="carousel-item">
-                <img src="oliv'e.jpg" class="d-block w-100" alt="...">
+                <img src="oliv'e.jpg" class="d-block w-100" alt="Олів'є">
             </div>
         </div>
         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
@@ -177,104 +115,22 @@
     </div>
 </div>
 
-
-<div class="sushi-card-container">
-    <div class="sushi-card">
-        <img src="margarita.png" alt="Sushi Image">
-        <div class="title"><strong>Маргарита</strong></div>
-        <div class="description"><strong>Класична піца з томатним соусом, моцарелою та базиліком</strong></div>
-        <div class="price-weight"><span class="price"><strong>Ціна: 250 грн/450гр</strong></span><br><span class="weight"><strong>Вага: 450 г</strong></span></div>
-        <form action="Busket.html" method="POST">
-            <input hidden type="text" name="title" value="Маргарита">
-            <input hidden type="text" name="price-weight" value="250">
-            <input type="submit" class="add-to-card" onclick ="addToCart()" value="Додати у кошик">
-        </form>
-    </div>
-
-    <div class="sushi-card">
-        <img src="peperonni.jpg" alt="Sushi Image">
-        <div class="title"><strong>Пепероні</strong></div>
-        <div class="description"><strong>Піца з томатним соусом, моцарелою та ковбасками пепероні</strong></div>
-        <div class="price-weight"><span class="price"><strong>Ціна: 275 грн/455гр</strong></span><br><span class="weight"><strong>Вага: 455 г</strong></span></div>
-        <form action="Busket.html" method="POST">
-            <input hidden type="text" name="title" value="Пепероні">
-            <input hidden type="text" name="price-weight" value="275">
-            <input type="submit" class="add-to-card" onclick ="addToCart()" value="Додати у кошик">
-        </form>
-    </div>
-
-    <div class="sushi-card">
-        <img src="kaprichoza.jpg" alt="Sushi Image">
-        <div class="title"><strong>Капрічоза</strong></div>
-        <div class="description"><strong>Піца з артишоками, шинкою, грибами і оливками</strong></div>
-        <div class="price-weight"><span class="price"><strong>Ціна: 260 грн/480гр</strong></span><br><span class="weight"><strong>Вага: 480 г</strong></span></div>
-        <form action="Busket.html" method="POST">
-            <input hidden type="text" name="title" value="Капрічоза">
-            <input hidden type="text" name="price-weight" value="260">
-            <input type="submit" class="add-to-card" onclick ="addToCart()" value="Додати у кошик">
-        </form>
-    </div>
-
-    <div class="sushi-card">
-        <img src="4cheese.jpg" alt="Sushi Image">
-        <div class="title"><strong>Чотири сири</strong></div>
-        <div class="description"><strong>Піца з моцарелою, горгонзолою, пармезаном та ементалем</strong></div>
-        <div class="price-weight"><span class="price"><strong>Ціна: 290 грн/500гр</strong></span><br><span class="weight"><strong>Вага: 500 г</strong></span></div>
-        <form action="Busket.html" method="POST">
-            <input hidden type="text" name="title" value="Чотири сири">
-            <input hidden type="text" name="price-weight" value="290">
-            <input type="submit" class="add-to-card" onclick ="addToCart()" value="Додати у кошик">
-        </form>
-    </div>
-
-    <div class="sushi-card">
-        <img src="gavaiska.jpg" alt="Sushi Image">
-        <div class="title"><strong>Гавайська</strong></div>
-        <div class="description"><strong>Піца з ананасами, шинкою та моцарелою</strong></div>
-        <div class="price-weight"><span class="price"><strong>Ціна: 280 грн/485гр</strong></span><br><span class="weight"><strong>Вага: 485 г</strong></span></div>
-        <form action="Busket.html" method="POST">
-            <input hidden type="text" name="title" value="Гавайська">
-            <input hidden type="text" name="price-weight" value="280">
-            <input type="submit" class="add-to-card" onclick ="addToCart()" value="Додати у кошик">
-        </form>
-    </div>
-
-    <div class="sushi-card">
-        <img src="diablo.jpg" alt="Sushi Image">
-        <div class="title"><strong>Діабло</strong></div>
-        <div class="description"><strong>Гостра піца з пепероні, чилі та червоним перцем</strong></div>
-        <div class="price-weight"><span class="price"><strong>Ціна: 270 грн/490гр</strong></span><br><span class="weight"><strong>Вага: 490 г</strong></span></div>
-        <form action="Busket.html" method="POST">
-            <input hidden type="text" name="title" value="Діабло">
-            <input hidden type="text" name="price-weight" value="270">
-            <input type="submit" class="add-to-card" onclick ="addToCart()" value="Додати у кошик">
-        </form>
-    </div>
-</div>
-
-<div class="bottom-menu">
+<!-- Раздел меню с черным фоном -->
+<div class="menu-section">
     <ul>
         <li><a href="pizza.html">Піца</a></li>
         <li><a href="sushi.html">Суші</a></li>
-        <li><a href="salats.html">Салати</a></li>
-        <li><a href="gariachistravi.html">Гарячі страви</a></li>
-        <li><a href="garnirs.html">Гарніри</a></li>
-        <li class="busket"><a href="busket.html">Кошик</a></li>
+        <li><a href="wok.html">Wok</a></li>
+        <li><a href="salads.html">Салати</a></li>
+        <li><a href="soups.html">Супи</a></li>
+        <li><a href="desserts.html">Десерти</a></li>
+        <li><a href="drinks.html">Напої</a></li>
+        <li><a href="offers.html">Акції</a></li>
+        <li><a href="delivery.html">Умови доставки</a></li>
+        <li><a href="contacts.html">Контакти</a></li>
     </ul>
 </div>
 
-<script>
-    function toggleMenu() {
-        const sideMenu = document.getElementById("sideMenu");
-        if (sideMenu.style.width === "250px") {
-            sideMenu.style.width = "0";
-        } else {
-            sideMenu.style.width = "250px";
-        }
-    }
-
-</script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
