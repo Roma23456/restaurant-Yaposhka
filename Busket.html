@@ -7,7 +7,11 @@
     <title>Сайт</title>
     <style>
         body {
-           background-color: #FAEBD7;
+            text-align: center;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #696969; /* Set gray background color */
         }
 
 
@@ -39,11 +43,281 @@
         table{
           width: 700px;
         }
+        nav {
+            background-color: #FFFF00;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            position: fixed; /* Фиксированное позиционирование */
+            top: 0; /* Прикрепить к верху */
+            width: 100%; /* На всю ширину экрана */
+            z-index: 1000; /* Установить высокий z-index для видимости над другими элементами */
+        }
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+        nav ul li {
+            float: left;
+        }
+        nav ul li a {
+            display: block;
+            color: black;
+            text-align: center;
+            padding: 18px 20px;
+            text-decoration: none;
+        }
+        nav ul li a:hover, nav ul li a.active {
+            background-color: #0000CD;
+            color: white;
+        }
+        .nav-icons {
+            margin-left: auto;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-right: 20px;
+            position: relative;
+            left: -20px;
+            top: 17px;
+            display: inline-block;
+        }
+        .nav-icons a {
+            color: black;
+            font-size: 20px;
+            text-decoration: none;
+            position: relative;
+        }
+        .nav-icons a:hover {
+            color: #0000CD;
+        }
+        .cart-icon {
+            position: relative;
+            left: -26px;
+            top: 17px;
+            display: inline-block;
+        }
+        .cart-count {
+            position: absolute;
+            top: -10px;
+            left: 20px;
+            background-color: green;
+            color: white;
+            padding: 3px 7px;
+            border-radius: 50%;
+            font-size: 13px;
+        }
+        .cart-icon svg,
+        .nav-icons svg {
+            width: 32px;
+            height: 32px;
+        }
+        #dropdown-products {
+            display: none;
+            background-color: green;
+        }
+        #menu-products:hover #dropdown-products {
+            display: block;
+        }
+        #dropdown-products li a {
+            text-decoration: none;
+            color: #8B008B;
+        }
+        .menu-icon {
+            position: fixed;
+            top: 14px; /* Raise it higher; adjust as needed */
+            right: auto;
+            left: 1443px;
+            cursor: pointer;
+            z-index: 1000;
+        }
 
+        .menu-icon span {
+            display: block;
+            width: 35px;
+            height: 5px;
+            margin: 6px 0;
+            background-color: green; /* Change the color to black */
+            transition: 0.4s;
+        }
+        .side-menu {
+            height: 100%;
+            width: 0;
+            position: fixed;
+            top: 0;
+            right: 0;
+            background-color: black;
+            overflow-x: hidden;
+            transition: 0.5s;
+            padding-top: 60px;
+            z-index: 999;
+        }
+
+        .side-menu ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .side-menu ul li {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .side-menu ul li a {
+            color: white;
+            font-size: 25px;
+            text-decoration: none;
+            display: inline-block;
+            position: relative;
+        }
+
+        .side-menu ul li a:after {
+            content: '';
+            display: block;
+            height: 2px;
+            width: 0;
+            background: #00FF00;
+            transition: width 0.4s;
+        }
+
+        .side-menu ul li a:hover:after {
+            width: 100%;
+        }
+        .address-menu {
+            height: 100%;
+            width: 0;
+            position: fixed;
+            top: 0;
+            left: 0;
+            background-color: black;
+            overflow-x: hidden;
+            transition: 0.5s;
+            padding-top: 60px;
+            z-index: 999;
+        }
+
+        .address-menu ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .address-menu ul li {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .address-menu ul li a {
+            color: white;
+            font-size: 20px;
+            text-decoration: none;
+            display: inline-block;
+            position: relative;
+        }
+
+        .address-menu ul li a:after {
+            content: '';
+            display: block;
+            height: 2px;
+            width: 0;
+            background: #00FF00;
+            transition: width 0.4s;
+        }
+        .address-menu ul li:first-child a {
+            color: white; /* Ensure this specific link is white */
+            font-weight: bold; /* Make the text bold if desired */
+            pointer-events: none;
+        }
+
+        .address-menu ul li a:hover:after {
+            width: 100%;
+        }
+        .bottom-menu {
+            width: 100%;
+            background-color: black;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            padding: 20px 0;
+            z-index: 999;
+        }
+
+        .bottom-menu ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        .bottom-menu ul li {
+            margin: 0 20px;
+        }
+
+        .bottom-menu ul li a {
+            color: white;
+            font-size: 25px;
+            text-decoration: none;
+            display: inline-block;
+            position: relative;
+        }
+
+        .bottom-menu ul li a:after {
+            content: '';
+            display: block;
+            height: 2px;
+            width: 0;
+            background: #FF00FF;
+            transition: width 0.4s;
+        }
+
+        .bottom-menu ul li a:hover:after {
+            width: 100%;
+        }
+        .bottom-menu a.active {
+            text-decoration: underline;
+            color: #FFFF00; /* Можно добавить любой цвет, который вам нравится */
+        }
+        table {
+            margin-top: 50px; /* Увеличьте значение, чтобы таблица была дальше от верха */
+        }
 
     </style>
 </head>
 <body>
+
+<nav>
+    <ul>
+        <li><a href="pizza.html" id="pizza-link">Піца</a></li>
+        <li><a href="sushi.html" id="sushi-link">Суші</a></li>
+        <li><a href="salats.html" id="salats-link">Салати</a></li>
+        <li><a href="gariachistravi.html" id="gariachistravi-link">Гарячі страви</a></li>
+        <li><a href="garnirs.html" id="garnirs-link">Гарніри</a></li>
+        <li class="busket"><a href="busket.html">Кошик</a></li>
+    </ul>
+    <div class="nav-icons">
+    <div id="menu-products">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-telephone" viewBox="0 0 16 16">
+            <path d="M3.654 1.328a.678.678 0 0 0-1.015-.063L1.605 2.3c-.483.484-.661 1.169-.45 1.77a17.6 17.6 0 0 0 4.168 6.608 17.6 17.6 0 0 0 6.608 4.168c.601.211 1.286.033 1.77-.45l1.034-1.034a.678.678 0 0 0-.063-1.015l-2.307-1.794a.68.68 0 0 0-.58-.122l-2.19.547a1.75 1.75 0 0 1-1.657-.459L5.482 8.062a1.75 1.75 0 0 1-.46-1.657l.548-2.19a.68.68 0 0 0-.122-.58zM1.884.511a1.745 1.745 0 0 1 2.612.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.68.68 0 0 0 .178.643l2.457 2.457a.68.68 0 0 0 .644.178l2.189-.547a1.75 1.75 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.6 18.6 0 0 1-7.01-4.42 18.6 18.6 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877z"/>
+        </svg>
+        <ul id="dropdown-products">
+            <li><a href="https://t.me/sheremetkaaaa"><strong>@sheremetkaaaa</strong></a></li>
+            <li><a href="https://t.me/Foryou23y"><strong>@Foryou23y</strong></a></li>
+            <li><a href="https://t.me/htmluser_0594"><strong>@htmluser_0594</strong></a></li>
+        </ul>
+    </div>
+    </div>
+    <div class="cart-icon">
+    <a href="busket.html"> <!-- Указываем ссылку на страницу корзины -->
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart2" id="cart-icon" viewBox="0 0 16 16">
+            <path d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5M3.14 5l1.25 5h8.22l1.25-5zM5 13a1 1 0 1 0 0 2 1 1 0 0 0 0-2m-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0m9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2m-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0"/>
+        </svg>
+        <span id="cart-count" class="cart-count">0</span> <!-- Отображение числа товаров -->
+    </a>
+    </div>
+
+</nav>
 <table>
 
     <tr>
@@ -74,6 +348,110 @@
 </div>
 
 
+<div class="menu-icon" onclick="toggleMenu()">
+    <span></span>
+    <span></span>
+    <span></span>
+</div>
+
+<div class="side-menu" id="sideMenu">
+    <ul>
+        <li><a href="pizza.html">Піца</a></li>
+        <li><a href="sushi.html">Суші</a></li>
+        <li><a href="salats.html">Салати</a></li>
+        <li><a href="gariachistravi.html">Гарячі страви</a></li>
+        <li><a href="garnirs.html">Гарніри</a></li>
+        <li class="busket"><a href="busket.html">Кошик</a></li>
+    </ul>
+</div>
+<!-- New Address Block -->
+
+<!-- Address Menu -->
+<div class="address-menu" id="addressMenu">
+    <ul>
+        <li><a>Наші адреси</a></li>
+        <li><a href="https://www.google.com/maps/search/%D1%8F%D0%BF%D0%BE%D1%88%D0%BA%D0%B0+%D0%BA%D0%B8%D0%B5%D0%B2%D1%81%D0%BA%D0%B8%D0%B5+%D0%B0%D0%B4%D1%80%D0%B5%D1%81%D0%B0/@50.4593288,30.5743612,10.22z?authuser=0&entry=ttu">Київ</a></li>
+        <li><a href="https://www.google.com/maps/search/%D1%8F%D0%BF%D0%BE%D1%88%D0%BA%D0%B0+%D1%85%D0%B0%D1%80%D0%B1%D0%BA%D0%BE%D0%B2%D1%81%D0%BA%D0%B8%D0%B5+%D0%B0%D0%B4%D1%80%D0%B5%D1%81%D0%B0/@49.7811941,36.2411648,9.42z?authuser=0&entry=ttu">Харків</a></li>
+        <li><a href="https://www.google.com/maps/search/%D1%8F%D0%BF%D0%BE%D1%88%D0%BA%D0%B0+%D1%82%D0%BE%D0%BB%D1%8C%D0%BA%D0%BE+%D0%B2+%D0%BE%D0%B4%D0%B5%D1%81%D1%81%D0%B5/@46.4967125,30.6271639,9.68z?authuser=0&entry=ttu">Одеса</a></li>
+        <li><a href="https://www.google.com/maps/place/Yapiko/@49.5955492,34.5649769,11.46z/data=!4m6!3m5!1s0x40d82f92b5fa7603:0xf2915ca62d4cd7bf!8m2!3d49.5944166!4d34.5348955!16s%2Fg%2F11vbzm_hsr?authuser=0&entry=ttu">Полтава</a></li>
+    </ul>
+</div>
+
+<div class="bottom-menu">
+    <ul>
+        <li><a href="pizza.html">Піца</a></li>
+        <li><a href="sushi.html">Суші</a></li>
+        <li><a href="salats.html">Салати</a></li>
+        <li><a href="gariachistravi.html">Гарячі страви</a></li>
+        <li><a href="garnirs.html">Гарніри</a></li>
+        <li class="busket"><a href="busket.html">Кошик</a></li>
+    </ul>
+</div>
+
+<script>
+    function toggleMenu() {
+        const sideMenu = document.getElementById("sideMenu");
+        const addressMenu = document.getElementById("addressMenu");
+
+        if (sideMenu.style.width === "250px" || addressMenu.style.width === "250px") {
+            sideMenu.style.width = "0";
+            addressMenu.style.width = "0";
+        } else {
+            sideMenu.style.width = "250px";
+            addressMenu.style.width = "250px";
+        }
+    }
+    document.addEventListener('DOMContentLoaded', function() {
+    const currentPath = window.location.pathname.split("/").pop();
+
+    const menuItems = document.querySelectorAll('.bottom-menu a');
+
+    menuItems.forEach(item => {
+        const linkPath = item.getAttribute('href');
+
+        if (linkPath === currentPath) {
+            item.classList.add('active');
+        }
+    });
+});
+
+const navLinks = document.querySelectorAll('.bottom-menu a');
+
+navLinks.forEach(link => {
+    link.addEventListener('click', function() {
+        navLinks.forEach(otherLink => otherLink.classList.remove('active'));
+        this.classList.add('active');
+    });
+});
+
+    document.addEventListener('DOMContentLoaded', () => {
+        const cartCountElement = document.getElementById('cart-count');
+
+        // Проверка и загрузка сохраненного значения из LocalStorage
+        let cartCount = localStorage.getItem('cartCount') ? parseInt(localStorage.getItem('cartCount')) : 0;
+        cartCountElement.textContent = cartCount;
+
+        // Добавление товара в корзину
+        document.querySelectorAll('.add-to-cart').forEach(button => {
+            button.addEventListener('click', (e) => {
+                e.preventDefault();
+                cartCount++;
+                cartCountElement.textContent = cartCount;
+
+                // Сохранение обновленного значения в LocalStorage
+                localStorage.setItem('cartCount', cartCount);
+                addToCart(); // Твоя функция добавления в корзину
+            });
+        });
+
+        // Логика для закрытия модального окна (если оно есть)
+        window.addEventListener('click', (event) => {
+            if (event.target == cartModal) {
+                cartModal.style.display = 'none';
+            }
+        });
+    });
+</script>
 
 
 </body>
