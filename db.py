@@ -24,3 +24,5 @@ def add_hotel(name, description, price):
 
 
 init_db()
+
+

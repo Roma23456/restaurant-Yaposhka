@@ -64,17 +64,17 @@
         .sushi-card .weight {
             color: #000000; /* Weight color */
         }
-        .sushi-card .add-to-cart {
+        .sushi-card .add-to-card {
             display: block;
             background-color: #ff6347;
             color: white;
             text-decoration: none;
             padding: 10px;
-            margin: 10px;
+            margin: auto;
             border-radius: 4px;
             transition: background-color 0.3s;
         }
-        .sushi-card .add-to-cart:hover {
+        .sushi-card .add-to-card:hover {
             background-color: #ff4500;
         }
         #notification {
@@ -400,7 +400,7 @@
     </div>
     </div>
     <div class="cart-icon">
-    <a href="busket.html"> <!-- Указываем ссылку на страницу корзины -->
+    <a href="/busket"> <!-- Указываем ссылку на страницу корзины -->
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart2" id="cart-icon" viewBox="0 0 16 16">
             <path d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5M3.14 5l1.25 5h8.22l1.25-5zM5 13a1 1 0 1 0 0 2 1 1 0 0 0 0-2m-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0m9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2m-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0"/>
         </svg>
@@ -473,10 +473,10 @@
         <div class="title"><strong>Маргарита</strong></div>
         <div class="description"><strong>Класична піца з томатним соусом, моцарелою та базиліком</strong></div>
         <div class="price-weight"><span class="price"><strong>Ціна: 250 грн/450гр</strong></span><br><span class="weight"><strong>Вага: 450 г</strong></span></div>
-        <form action="Busket.html" method="POST">
+        <form action="/basa" method="POST">
             <input hidden type="text" name="title" value="Маргарита">
             <input hidden type="text" name="price-weight" value="250">
-            <a href="#" class="add-to-cart" onclick="addToCart()">Додати в кошик</a>
+            <input type="submit" class="add-to-card" onclick ="addToCart()" value="Додати у кошик">
         </form>
     </div>
 
@@ -488,7 +488,7 @@
         <form action="Busket.html" method="POST">
             <input hidden type="text" name="title" value="Пепероні">
             <input hidden type="text" name="price-weight" value="275">
-            <a href="#" class="add-to-cart" onclick="addToCart()">Додати в кошик</a>
+            <input type="submit" class="add-to-card" onclick ="addToCart()" value="Додати у кошик">
         </form>
     </div>
 
@@ -500,7 +500,7 @@
         <form action="Busket.html" method="POST">
             <input hidden type="text" name="title" value="Капрічоза">
             <input hidden type="text" name="price-weight" value="260">
-            <a href="#" class="add-to-cart" onclick="addToCart()">Додати в кошик</a>
+            <input type="submit" class="add-to-card" onclick ="addToCart()" value="Додати у кошик">
         </form>
     </div>
 
@@ -512,7 +512,7 @@
         <form action="Busket.html" method="POST">
             <input hidden type="text" name="title" value="Чотири сири">
             <input hidden type="text" name="price-weight" value="290">
-            <a href="#" class="add-to-cart" onclick="addToCart()">Додати в кошик</a>
+            <input type="submit" class="add-to-card" onclick ="addToCart()" value="Додати у кошик">
         </form>
     </div>
 
@@ -524,7 +524,7 @@
         <form action="Busket.html" method="POST">
             <input hidden type="text" name="title" value="Гавайська">
             <input hidden type="text" name="price-weight" value="280">
-            <a href="#" class="add-to-cart" onclick="addToCart()">Додати в кошик</a>
+            <input type="submit" class="add-to-card" onclick ="addToCart()" value="Додати у кошик">
         </form>
     </div>
 
@@ -536,7 +536,7 @@
         <form action="Busket.html" method="POST">
             <input hidden type="text" name="title" value="Діабло">
             <input hidden type="text" name="price-weight" value="270">
-            <a href="#" class="add-to-cart" onclick="addToCart()">Додати в кошик</a>
+            <input type="submit" class="add-to-card" onclick ="addToCart()" value="Додати у кошик">
         </form>
     </div>
 </div>

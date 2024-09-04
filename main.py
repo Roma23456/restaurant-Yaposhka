@@ -1,5 +1,6 @@
 import sqlite3
-from flask import Flask, render_template, request, send_file
+import random
+from flask import Flask, render_template, request
 
 app = Flask(__name__)
 
@@ -101,7 +102,27 @@ def add_hotel():
         ''', (name, price))
     conn.commit()
     conn.close()
-    return render_template("Busket.html")
+    return render_template("index.html")
+
+
+@app.route('/delete_dish', methods=["POST"])
+def delete7():
+    name = request.form['name']
+    with sqlite3.connect("hotels.db") as connection:
+        cursor = connection.cursor()
+        cursor.execute(f"SELECT * FROM busket WHERE name = '{name}' ")
+        records = cursor.fetchall()
+        dish = []
+        for i in records:
+            dish.append(i[0])
+        cursor.execute(f"DELETE FROM busket WHERE id = '{random.choice(dish)}'")
+        connection.commit()
+        cursor.close()
+
+
+
+        return render_template("index.html")
+
 
 @app.route('/delete')
 def delete():
@@ -127,7 +148,7 @@ def delete1(id):
 
 @app.route('/pizza')
 def main1():
-    return send_file("pizza.html")
+    return render_template("pizza.html")
 
 
 @app.route('/sushi')
